@@ -1,0 +1,18 @@
+.tag {
+  border: solid;
+  border-radius: 10px;
+  background-color: blueviolet;
+  color: white;
+  width: fit-content;
+  padding: 0px 5px;
+  height: 21px;
+  font-size: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.tag__container{
+display: flex;
+justify-content: space-between;
+margin-right: 10px
+}
