@@ -11,13 +11,65 @@
 }
 
 .header__title {
+  text-align: center;
   padding: 20px;
   display: flex;
   font-family: tablet-gothic, sans-serif;
-  font-size: 30px;
+  font-size: 3vw;
   font-weight: 500;
   color: white;
 }
 span {
   padding: 2px;
+}
+.logo {
+  width: 13%;
+  padding-left: 15px;
+}
+@media only screen and (max-width: 900px) {
+  .header__title {
+    width: 100%;
+    font-size: 3vw;
+    color: white;
+  }
+  .logo {
+    width: 22%;
+    padding-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .header__title {
+    width: 100%;
+    font-size: 4vw;
+    color: white;
+  }
+  .logo {
+    width: 22%;
+    padding-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .header__title {
+    width: 100%;
+    font-size: 5vw;
+    color: white;
+  }
+  .logo {
+    width: 22%;
+    padding-left: 15px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .header__title {
+    width: 100%;
+    font-size: 5vw;
+    color: white;
+    padding: 1px;
+  }
+  .logo {
+    width: 22%;
+    padding-left: 15px;
+  }
 }

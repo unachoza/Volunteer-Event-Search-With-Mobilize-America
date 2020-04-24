@@ -1,9 +1,9 @@
 .event-card {
-  width: 90%;
+  /* width: 90%; */
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 20px 5px;
+  margin: 20px 20px;
   color: #004ac7;
   padding: 6px 0px 6px 12px;
   background-color: white;
@@ -17,6 +17,7 @@
   color: white;
   background-color: #0049c798;
 }
+
 .event-card__date {
   text-align: left;
   padding: 5px;
@@ -37,7 +38,31 @@
 }
 
 .event-card__description {
+  animation: slideDown 2s; /* this doesn't work   suppose to slide the card not just the description*/
   font-size: 15px;
   margin: 0px;
   padding: 5px;
+}
+/* this doesn't work  */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}
+@media only screen and (max-width: 760px) {
+  .event-card {
+    width: 85vw;
+    animation: crescendo 0.3s ease-in;
+  }
+}
+@media only screen and (max-width: 500 px) {
+  .event-card {
+    margin: 20px;
+    border: blue solid;
+    width: 85vw;
+    animation: crescendo 0.3s ease-in;
+  }
 }

@@ -19,7 +19,8 @@ const normalizeEventData = (event) => ({
   },
   url: event.browser_url || null,
   eventImg: event.featured_image_url || null,
-  link: event.browser_url || null
+  link: event.browser_url || null, 
+  isVirtual: event.isVirtual
 });
 
 
@@ -29,6 +30,7 @@ export const useEventsFetch = ( pageNumber, requestUrl) => {
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [nextPage, setNextPage] = useState(null);
+  
 
   useEffect((nextPage, fetchedEvents) => {
     setNextPage(null);
@@ -37,15 +39,17 @@ export const useEventsFetch = ( pageNumber, requestUrl) => {
   }, [requestUrl]);
   
   useEffect(() => {
+    // const abortController = new AbortController()
+    // const signal = abortController.signal
     const fetchingFromAPI = async () => {
       setLoading(true);
       setError(false);
       try {
-        let data 
+        let data
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
         else data = await axios.get(MOBILZE_BASE_URL + "&zipcode=" + DEFAULT_ZIPCODE);
-         console.log(data.data.data)
+        console.log(data)
         setFetchedEvents((prevEvents) => {
           return [...new Set([...prevEvents, ...data.data.data.map((event) => normalizeEventData(event))])];
         });
@@ -58,8 +62,9 @@ export const useEventsFetch = ( pageNumber, requestUrl) => {
         console.log('this is the error', e.message)
         setError(true);
       }
-    };
-
+      // return
+      // abortController.abort()
+    }
     fetchingFromAPI();
   }, [ pageNumber, requestUrl]);
 

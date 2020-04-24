@@ -2,3 +2,8 @@
   float: right;
   margin: 20px 10px;
 }
+@media only screen and (max-width: 760px) {
+  .map-container {
+    display: none;
+  }
+}

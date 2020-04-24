@@ -87,3 +87,13 @@ li {
     transform: translateX(13px);
   }
 }
+@media only screen and (max-width: 760px) {
+  .event-list__container {
+    margin: 0vh 0vw 0vh -7vw;
+    width: 100vw;
+    overflow: none;
+    height: 88vh;
+    animation: crescendo 0.3s ease-in;
+  }
+  
+}

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
+import AddDateFilter from './addDateFilter.component'
 import './form.styles.css';
 
 const Form = (props) => {
   const [query, setQuery] = useState('');
   const [eventTypeQuery, setEventTypeQuery] = useState([]);
   const [addEventTypesVisible, setAddEventTypesVisible] = useState(false);
+   const [choosDateVisible, setChoosDateVisible] = useState(false);
 
   const handleZipcodeQuery = (event) => {
     event.preventDefault();
@@ -60,9 +62,17 @@ const Form = (props) => {
             Add Filters
           </button>
         )}
+        {/* {!choosDateVisible && (
+          <button className="zipcode" onClick={(e) => setChoosDateVisible(true)}>
+            Choose Date
+          </button>
+        )} */}
       </form>
       {addEventTypesVisible && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
+      )}
+        {choosDateVisible && (
+        <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
     </div>
   );

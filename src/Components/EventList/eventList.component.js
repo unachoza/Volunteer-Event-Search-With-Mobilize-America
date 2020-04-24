@@ -4,6 +4,7 @@ import './eventList.styles.css';
 import LoadingSpinner from '../loadingSpinner/loadingSpinner.component';
 
 const EventList = ({ events, lastEventElementRef, loading }) => {
+  console.log(events)
   return (
     <div className="event-list__container">
       {!events.length ? (

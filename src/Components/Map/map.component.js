@@ -11,6 +11,7 @@ const EventMarker = () => {
     background: `white`,
     color: '#004ac7',
     height: '100%',
+    border: 'solid blue',
     marginLeft: '10px',
     fontSize: '15px',
     fontWeight: '600',
