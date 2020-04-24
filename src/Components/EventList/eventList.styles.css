@@ -1,4 +1,6 @@
 .event-list__container {
+  height: 85vh;
+  margin: 85px 20px;
   border-radius: 10px;
   box-shadow: black;
   width: 30vw;
@@ -94,6 +96,6 @@ li {
     width: 100vw;
     overflow: none;
     height: 88vh;
-    
+    margin: 10px 0px;
   }
 }
