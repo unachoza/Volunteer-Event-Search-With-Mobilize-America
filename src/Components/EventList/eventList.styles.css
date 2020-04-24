@@ -3,8 +3,10 @@
   box-shadow: black;
   width: 30vw;
   height: 80vh;
-  margin-top: 13vh;
+  margin-top: 13vh 0;
   overflow: scroll;
+  border: solid 1px;
+  padding: 0;
   animation: crescendo 0.3s ease-in;
 }
 
@@ -17,7 +19,8 @@
   animation: moveInLeft 0.4s ease-in;
 }
 ul {
-  padding-inline-start: inherit;
+  margin: 0;
+  padding: 0;
 }
 li {
   opacity: 0;
@@ -71,10 +74,10 @@ li {
 @keyframes crescendo {
   0% {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-15px);
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.75;
     transform: translateX(8px);
   }
   80% {
@@ -84,16 +87,14 @@ li {
 
   100% {
     opacity: 1;
-    transform: translateX(13px);
+    transform: translateX(0px);
   }
 }
 @media only screen and (max-width: 760px) {
   .event-list__container {
-    margin: 0vh 0vw 0vh -7vw;
     width: 100vw;
     overflow: none;
     height: 88vh;
-    animation: crescendo 0.3s ease-in;
+    
   }
-  
 }

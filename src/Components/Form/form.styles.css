@@ -1,6 +1,4 @@
 .form__container {
-  display: flex;
-  width: 40vw;
   flex-wrap: wrap;
   margin: 0px auto;
 }
@@ -11,7 +9,7 @@
   font-weight: '450';
 }
 
-.zip-input {
+.form__zip-input {
   display: flex;
   width: 60%;
   margin: 0px auto;
@@ -59,7 +57,9 @@ label {
     margin: 0px auto;
     border: solid 1px blue;
   }
-  form {
-    border: solid peach;
+  .form__zip-input {
+    display: flex;
+    width: 88%;
+    margin: 0px auto;
   }
 }

@@ -42,10 +42,10 @@ const Form = (props) => {
   };
 
   return (
-    <div className="form-container">
-      <form className="zip-input">
+    <div className="form__container">
+      <form className="form__zip-input">
         <input
-          className="zip-input"
+          className="form__zip-input"
           placeholder="enter zip code"
           type="text"
           name="zipcode"
