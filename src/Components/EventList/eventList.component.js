@@ -1,7 +1,7 @@
 import React from 'react';
-import Event from 'Components/Event/event.component';
-import 'Components/EventList/eventList.styles.css';
-import LoadingSpinner from 'Components/loadingSpinner/loadingSpinner.component';
+import Event from '../Event/event.component';
+import './eventList.styles.css';
+import LoadingSpinner from '../loadingSpinner/loadingSpinner.component';
 
 
 const EventList = ({ events, lastEventElementRef, loading }) => {

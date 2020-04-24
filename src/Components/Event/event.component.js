@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import EventTagFooter from 'Components/EventTag/eventTag.component';
-import 'Components/Event/event.styles.css';
+import EventTagFooter from '../EventTag/eventTag.component';
+import './event.styles.css';
 
 const Event = (props) => {
   const [displayDetails, setDisplayDetails] = useState(false);

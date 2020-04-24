@@ -1,5 +1,5 @@
 import React from 'react';
-import { EVENT_TYPES } from 'Constants/constants';
+import { EVENT_TYPES } from '../../Constants/constants';
 
 const formatEventTypes = (event) => event.replace(new RegExp('_', 'g'), ' ').toLowerCase();
 

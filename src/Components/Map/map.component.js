@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import 'Components/Map/map.styles.css';
-import EventsContext from 'Context/event.context';
+import './map.styles.css';
+import EventsContext from '../../Context/event.context';
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const EventMarker = () => {
@@ -21,47 +21,46 @@ const EventMarker = () => {
   return (
     <EventsContext.Consumer>
       {(fetchedEvents) => (
-          <div>
-            {fetchedEvents
-              .filter((event) => event.coordinates.lat)
-              .map((event, i) => (
-                <Marker
-                  key={i}
-                  defaultAnimation={Animation.bounce}
-                  onClick={() => setSelectedMarker(event)}
-                  markers={event.title}
-                  position={{
-                    lat: event.coordinates.lat,
-                    lng: event.coordinates.lng,
-                  }}
-                />
-              ))}
-            {selectedMarker && (
-              <InfoWindow
+        <div>
+          {fetchedEvents
+            .filter((event) => event.coordinates.lat)
+            .map((event, i) => (
+              <Marker
+                key={i}
+                defaultAnimation={Animation.bounce}
+                onClick={() => setSelectedMarker(event)}
+                markers={event.title}
                 position={{
-                  lat: selectedMarker.coordinates.lat,
-                  lng: selectedMarker.coordinates.lng,
+                  lat: event.coordinates.lat,
+                  lng: event.coordinates.lng,
                 }}
-                onCloseClick={() => setSelectedMarker(null)}
-              >
-                <div style={divStyle}>
-                  <p>
-                    <a
-                      href={selectedMarker.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ textDecoration: 'none', color: '#004ac7' }}
-                    >
-                      {selectedMarker.title}
-                    </a>
-                  </p>
-                  <p>{selectedMarker.eventType}</p>
-                </div>
-              </InfoWindow>
-            )}
-          </div>
-        )
-      }
+              />
+            ))}
+          {selectedMarker && (
+            <InfoWindow
+              position={{
+                lat: selectedMarker.coordinates.lat,
+                lng: selectedMarker.coordinates.lng,
+              }}
+              onCloseClick={() => setSelectedMarker(null)}
+            >
+              <div style={divStyle}>
+                <p>
+                  <a
+                    href={selectedMarker.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none', color: '#004ac7' }}
+                  >
+                    {selectedMarker.title}
+                  </a>
+                </p>
+                <p>{selectedMarker.eventType}</p>
+              </div>
+            </InfoWindow>
+          )}
+        </div>
+      )}
     </EventsContext.Consumer>
   );
 };

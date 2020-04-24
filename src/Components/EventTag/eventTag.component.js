@@ -1,5 +1,5 @@
 import React from 'react';
-import 'Components/EventTag/eventTag.styles.css';
+import './eventTag.styles.css';
 
 const EventTagFooter = ({ eventTags: { eventType, eventDate, link } }) => {
   const translateUnixToDateRange = (eventDate) => (

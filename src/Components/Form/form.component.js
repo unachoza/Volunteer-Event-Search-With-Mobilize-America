@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AddEventFilter from 'Components/Form/addEventFilter.component';
-import 'Components/Form/form.styles.css';
+import AddEventFilter from './addEventFilter.component';
+import './form.styles.css';
 
 const Form = (props) => {
   const [query, setQuery] = useState('');
