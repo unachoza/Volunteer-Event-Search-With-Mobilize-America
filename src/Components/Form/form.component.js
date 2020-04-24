@@ -16,7 +16,6 @@ const Form = (props) => {
     document.querySelectorAll('input[type=checkbox]').forEach((el) => (el.checked = false));
   };
 
-
   const handleEventFilters = (event) => {
     const { value } = event.target;
     setEventTypeQuery([...eventTypeQuery, value]);
@@ -33,6 +32,12 @@ const Form = (props) => {
     setEventTypeQuery([]);
     return moreInputs;
   };
+  const keyPressed = (event) => {
+    setQuery(query + event.key);
+    if (event.key === 'Enter') {
+      handleZipcodeQuery(event);
+    }
+  };
 
   return (
     <div className="form-container">
@@ -42,16 +47,23 @@ const Form = (props) => {
           placeholder="enter zip code"
           type="text"
           name="zipcode"
+          onKeyPress={keyPressed}
           onBlur={(e) => setQuery(e.target.value)}
         />
         {!addEventTypesVisible && (
-          <button onClick={handleZipcodeQuery} className="zipcode">
+          <button onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
             Search
           </button>
         )}
-         {!addEventTypesVisible && <button className="zipcode" onClick={(e) => setAddEventTypesVisible(true)}>Add Filters</button>}
+        {!addEventTypesVisible && (
+          <button className="zipcode" onClick={(e) => setAddEventTypesVisible(true)}>
+            Add Filters
+          </button>
+        )}
       </form>
-      {addEventTypesVisible && <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />}
+      {addEventTypesVisible && (
+        <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
+      )}
     </div>
   );
 };
