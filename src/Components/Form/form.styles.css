@@ -14,6 +14,14 @@
   width: 60%;
   margin: 0px auto;
 }
+.form__event-filters {
+  display: flex;
+  /* width: 100vw; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  border: 1px solid;
+}
 
 ::placeholder {
   color: #004ac7;
@@ -50,16 +58,18 @@ label {
   width: 20px;
   font-size: 15px;
 }
+
 @media only screen and (max-width: 760px) {
-  .form {
+  .form__event-filters {
     width: 100vw;
+    flex-direction: row;
     flex-wrap: wrap;
     margin: 0px auto;
-    border: solid 1px blue;
+    border: 1px solid;
   }
   .form__zip-input {
     display: flex;
-    width: 88%;
+    width: 87%;
     margin: 0px auto;
   }
 }

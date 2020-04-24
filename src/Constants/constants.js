@@ -12,9 +12,9 @@ export const EVENT_TYPES = [
   'fundraiser',
   'voter_reg',
   'training',
-  'debate_watch_party',
-  'town_hall',
   'barnstorm',
+  'town_hall',
+  'debate_watch_party',
   'signature_gathering',
 ];
 
