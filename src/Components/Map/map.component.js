@@ -73,8 +73,17 @@ const Map = () => {
       lng: -73.9506774,
     }
   ) => {
-    if (fetchedEvents) center = fetchedEvents.find((event) => event.coordinates.lat);
-    return center.coordinates;
+    if (fetchedEvents) {
+      center = fetchedEvents.find((event) => event.coordinates.lat);
+      if (center) {
+        return center.coordinates;
+      } else {
+        return {
+          lat: 40.7282702,
+          lng: -73.9506774,
+        };
+      }
+    }
   };
   return (
     <div className="map-container">

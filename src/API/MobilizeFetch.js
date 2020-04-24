@@ -45,12 +45,15 @@ export const useEventsFetch = ( pageNumber, requestUrl) => {
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
         else data = await axios.get(MOBILZE_BASE_URL + "&zipcode=" + DEFAULT_ZIPCODE);
+         console.log(data.data.data)
         setFetchedEvents((prevEvents) => {
           return [...new Set([...prevEvents, ...data.data.data.map((event) => normalizeEventData(event))])];
         });
+        console.log(fetchedEvents)
         setHasMore(data.data.count > 0);
         setNextPage(data.data.next)
         setLoading(false);
+       
       } catch (e) {
         console.log('this is the error', e.message)
         setError(true);

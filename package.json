@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "env-cmd": "^10.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -18,8 +19,8 @@
   },
   "scripts": {
     "dev": "node -r dotenv/config bin/www.js",
-    "build": "react-scripts build \"NODE_PATH=./src\"",
-    "start": " react-scripts start  \"NODE_PATH=./src\"",
+    "build": "react-scripts build",
+    "start": "react-scripts start  \"NODE_PATH=./src\"",
     "test": "react-scripts test --watch *.js",
     "eject": "react-scripts eject"
   },
