@@ -4,6 +4,7 @@ import { MOBILZE_BASE_URL, DEFAULT_ZIPCODE } from '../Constants/constants';
 
 const normalizeEventData = (event) => ({
   id: event.id,
+  isVirtual: event.is_virtual,
   showEventDetails: false,
   eventType: event.event_type,
   title: event.title,
@@ -17,27 +18,40 @@ const normalizeEventData = (event) => ({
     start: event.timeslots[event.timeslots.length - 1]?.start_date || null,
     end_date: event.timeslots[event.timeslots.length - 1]?.end_date || null,
   },
-  url: event.browser_url || null,
   eventImg: event.featured_image_url || null,
-  link: event.browser_url || null, 
-  isVirtual: event.isVirtual
+  link: event.browser_url || null,
 });
 
+const normalizeEventDataForStateSearch = (event) => ({
+  id: event.id,
+  isVirtual: event.is_virtual,
+  state: event.sponser?.state || false,
+  coordinates: null,
+  showEventDetails: false,
+  eventType: event.event_type,
+  title: event.title,
+  eventDate: {
+    start: event.timeslots[event.timeslots.length - 1]?.start_date || null,
+    end_date: event.timeslots[event.timeslots.length - 1]?.end_date || null,
+  },
+  url: event.browser_url || null,
+});
 
-export const useEventsFetch = ( pageNumber, requestUrl) => {
+export const useEventsFetch = (pageNumber, requestUrl) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [nextPage, setNextPage] = useState(null);
-  
 
-  useEffect((nextPage, fetchedEvents) => {
-    setNextPage(null);
-    setFetchedEvents([]);
-    
-  }, [requestUrl]);
-  
+  useEffect(
+    (nextPage, fetchedEvents) => {
+      setNextPage(null);
+      setFetchedEvents([]);
+    },
+    [requestUrl]
+  );
+
   useEffect(() => {
     // const abortController = new AbortController()
     // const signal = abortController.signal
@@ -45,30 +59,36 @@ export const useEventsFetch = ( pageNumber, requestUrl) => {
       setLoading(true);
       setError(false);
       try {
-        let data
+        let data;
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
-        else data = await axios.get(MOBILZE_BASE_URL + "&zipcode=" + DEFAULT_ZIPCODE);
-        console.log(data)
+        else data = await axios.get(MOBILZE_BASE_URL); //+ '&zipcode=' + DEFAULT_ZIPCODE
+        console.log(data);
         setFetchedEvents((prevEvents) => {
-          return [...new Set([...prevEvents, ...data.data.data.map((event) => normalizeEventData(event))])];
+          return [
+            ...new Set([
+              ...prevEvents,
+              ...data.data.data
+                .filter((event) => event.is_virtual)
+                .map((event) => normalizeEventDataForStateSearch(event)),
+              // normalizeEventDataForStateSearch(event):
+              // normalizeEventData(event))
+            ]),
+          ];
         });
-        console.log(fetchedEvents)
+
         setHasMore(data.data.count > 0);
-        setNextPage(data.data.next)
+        setNextPage(data.data.next);
         setLoading(false);
-       
       } catch (e) {
-        console.log('this is the error', e.message)
+        console.log('this is the error', e.message);
         setError(true);
       }
       // return
       // abortController.abort()
-    }
+    };
     fetchingFromAPI();
-  }, [ pageNumber, requestUrl]);
+  }, [nextPage, pageNumber, requestUrl]);
 
   return { loading, error, fetchedEvents, hasMore };
 };
-
-

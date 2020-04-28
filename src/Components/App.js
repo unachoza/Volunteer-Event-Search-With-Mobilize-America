@@ -32,7 +32,7 @@ const App = () => {
     [loading, hasMore]
   );
 
-  const oldUpdateRequestUrl = (input, moreInputs = '') => {
+  const updateRequestUrl = (input, moreInputs = '') => {
     setRequestUrl(MOBILZE_BASE_URL + '&zipcode=' + input + moreInputs);
     setPageNumber(1);
   };
@@ -45,7 +45,7 @@ const App = () => {
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
             <div className="main-page">
-              <Form oldUpdateRequestUrl={oldUpdateRequestUrl} />
+              <Form updateRequestUrl={updateRequestUrl} />
               {error && <div>ZipCode Not Valid</div>}
               <Map />
             </div>
