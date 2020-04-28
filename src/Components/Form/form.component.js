@@ -11,7 +11,7 @@ const Form = (props) => {
 
   const handleZipcodeQuery = (event) => {
     event.preventDefault();
-    props.oldUpdateRequestUrl(query);
+    props.updateRequestUrl(query);
   };
 
   const clearCheckboxesFromForm = () => {
@@ -29,7 +29,7 @@ const Form = (props) => {
       eventTypeQuery.length > 1
         ? eventTypeQuery.map((type) => '&event_types=' + type).join('')
         : '&event_types=' + eventTypeQuery;
-    props.oldUpdateRequestUrl(query, moreInputs);
+    props.updateRequestUrl(query, moreInputs);
     clearCheckboxesFromForm();
     setEventTypeQuery([]);
     return moreInputs;

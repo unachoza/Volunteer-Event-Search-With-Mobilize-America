@@ -23,8 +23,8 @@ const EventMarker = () => {
     <EventsContext.Consumer>
       {(fetchedEvents) => (
         <div>
-          {fetchedEvents
-            .filter((event) => event.coordinates.lat)
+          {fetchedEvents.some((event) => event.coordinates) ?
+            fetchedEvents.filter((event) => event.coordinates.lat)
             .map((event, i) => (
               <Marker
                 key={i}
@@ -36,7 +36,7 @@ const EventMarker = () => {
                   lng: event.coordinates.lng,
                 }}
               />
-            ))}
+            )): null}
           {selectedMarker && (
             <InfoWindow
               position={{
@@ -74,16 +74,14 @@ const Map = () => {
       lng: -73.9506774,
     }
   ) => {
-    if (fetchedEvents) {
+    if (fetchedEvents.some((event) => event.coordinates)) {
       center = fetchedEvents.find((event) => event.coordinates.lat);
-      if (center) {
-        return center.coordinates;
-      } else {
-        return {
-          lat: 40.7282702,
-          lng: -73.9506774,
-        };
-      }
+      return center.coordinates;
+    } else {
+      return {
+        lat: 40.7282702,
+        lng: -73.9506774,
+      };
     }
   };
   return (
