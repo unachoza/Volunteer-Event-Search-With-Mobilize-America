@@ -22,7 +22,7 @@ const EventList = ({ events, lastEventElementRef, loading }) => {
               </div>
             ) : (
               <li>
-                <Event key={i} event={event} />
+                <Event key={i} event={event[1]} />
               </li>
             )
           )}
