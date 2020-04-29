@@ -11,7 +11,6 @@ const EventMarker = () => {
     background: `white`,
     color: '#004ac7',
     height: '100%',
-    border: 'solid blue',
     marginLeft: '10px',
     fontSize: '15px',
     fontWeight: '600',
@@ -23,20 +22,20 @@ const EventMarker = () => {
     <EventsContext.Consumer>
       {(fetchedEvents) => (
         <div>
-          {fetchedEvents.some((event) => event.coordinates) ?
+          {fetchedEvents.some((event) => event.coordinates.lat) ?
             fetchedEvents.filter((event) => event.coordinates.lat)
-            .map((event, i) => (
-              <Marker
-                key={i}
-                defaultAnimation={Animation.bounce}
-                onClick={() => setSelectedMarker(event)}
-                markers={event.title}
-                position={{
-                  lat: event.coordinates.lat,
-                  lng: event.coordinates.lng,
-                }}
-              />
-            )): null}
+              .map((event, i) => (
+                <Marker
+                  key={i}
+                  defaultAnimation={Animation.bounce}
+                  onClick={() => setSelectedMarker(event)}
+                  markers={event.title}
+                  position={{
+                    lat: event.coordinates.lat,
+                    lng: event.coordinates.lng,
+                  }}
+                />
+              )) : null}
           {selectedMarker && (
             <InfoWindow
               position={{
@@ -74,7 +73,7 @@ const Map = () => {
       lng: -73.9506774,
     }
   ) => {
-    if (fetchedEvents.some((event) => event.coordinates)) {
+    if (fetchedEvents.some((event) => event.coordinates.lat)) {
       center = fetchedEvents.find((event) => event.coordinates.lat);
       return center.coordinates;
     } else {

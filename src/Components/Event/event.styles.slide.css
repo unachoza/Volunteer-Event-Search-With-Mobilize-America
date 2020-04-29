@@ -1,6 +1,8 @@
 .event-card {
+  /* width: 90%; */
   position: relative;
-
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin: 20px 20px;
   color: #004ac7;
@@ -9,39 +11,12 @@
   border-radius: 10px;
   overflow: hidden;
   backface-visibility: hidden;
+  transition: transform 0.5s;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 }
 .event-card:hover {
-  border: solid 5px #004ac7
-}
-.event-card__description {
-  font-size: 15px;
-  margin: 0px;
-  padding: 5px;
-  position: absolute;
-  bottom: 100%;
-  top: 48px;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  height: 0;
-  transition: 5s linear;
-}
-
-/* .event-card:hover .event-card__description {
-  position: relative;
-  bottom: 0;
-  height: 100%;
-  transition: 3s ease-in-out;
-} */
-
-*/ .details__checkbox {
-  display: none;
-}
-.details__checkbox:checked ~ .event-card {
-  transform: scale(2);
-  transition: transform 0.8s;
-  background-color: #c700ac98;
+  color: white;
+  background-color: #0049c798;
 }
 
 .event-card__date {
@@ -63,15 +38,26 @@
   text-align: left;
 }
 
-/* this doesn't work, the way that I would like it to  */
+.event-card__description {
+  position: absolute;
+  animation: slideDown 2s; /* this doesn't work   suppose to slide the card not just the description*/
+  transition: 3s ease-in-out;
+  height: 100%;
+  font-size: 15px;
+  margin-top: 100px;
+  padding: 5px;
+}
+/* this doesn't work  */
 @keyframes slideDown {
   0% {
     transform: translateY(-4rem);
   }
   100% {
     transform: translateY(0rem);
+    height: 100%;
   }
 }
+
 @media only screen and (max-width: 760px) {
   .event-card {
     width: 85vw;

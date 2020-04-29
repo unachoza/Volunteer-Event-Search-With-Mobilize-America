@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import EventTagFooter from '../EventTag/eventTag.component';
 import './event.styles.css';
 
-const Event = (props) => {
+const Event = ({event}) => {
+  console.log(event)
   const [displayDetails, setDisplayDetails] = useState(false);
 
   const getDate = (unixTimestamp) => {
@@ -12,15 +13,21 @@ const Event = (props) => {
   const toggleDisplayDetails = () => {
     setDisplayDetails(!displayDetails);
   };
-  const { title, details, eventDate } = props.event[1];
+  
+  
+  if (event.length < 1) {
+  
+  }
+  const { title, details, eventDate } = event;
   return (
     <div className="event-card" onClick={toggleDisplayDetails}>
+      
       <div className="event-card__date">{getDate(eventDate.start)} </div>
       <div className="event-card__title" onClick={toggleDisplayDetails}>
         {title.toUpperCase()}
       </div>
       {displayDetails ? <div className="event-card__description">{details}</div> : null}
-      <EventTagFooter eventTags={props.event[1]} />
+      <EventTagFooter eventTags={event} />
     </div>
   );
 };

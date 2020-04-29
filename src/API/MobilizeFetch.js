@@ -22,20 +22,6 @@ const normalizeEventData = (event) => ({
   link: event.browser_url || null,
 });
 
-const normalizeEventDataForStateSearch = (event) => ({
-  id: event.id,
-  isVirtual: event.is_virtual,
-  state: event.sponser?.state || false,
-  coordinates: null,
-  showEventDetails: false,
-  eventType: event.event_type,
-  title: event.title,
-  eventDate: {
-    start: event.timeslots[event.timeslots.length - 1]?.start_date || null,
-    end_date: event.timeslots[event.timeslots.length - 1]?.end_date || null,
-  },
-  url: event.browser_url || null,
-});
 
 export const useEventsFetch = (pageNumber, requestUrl) => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +39,7 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
   );
 
   useEffect(() => {
+    console.log(nextPage);
     // const abortController = new AbortController()
     // const signal = abortController.signal
     const fetchingFromAPI = async () => {
@@ -62,23 +49,22 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
         let data;
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
-        else data = await axios.get(MOBILZE_BASE_URL); //+ '&zipcode=' + DEFAULT_ZIPCODE
-        console.log(data);
+        else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
+     
         setFetchedEvents((prevEvents) => {
           return [
             ...new Set([
               ...prevEvents,
               ...data.data.data
-                .filter((event) => event.is_virtual)
-                .map((event) => normalizeEventDataForStateSearch(event)),
-              // normalizeEventDataForStateSearch(event):
-              // normalizeEventData(event))
+                // .filter((event) => event.is_virtual)
+                .map((event) => normalizeEventData(event)),
             ]),
           ];
         });
 
         setHasMore(data.data.count > 0);
         setNextPage(data.data.next);
+        console.log(nextPage)
         setLoading(false);
       } catch (e) {
         console.log('this is the error', e.message);
@@ -88,7 +74,7 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
       // abortController.abort()
     };
     fetchingFromAPI();
-  }, [nextPage, pageNumber, requestUrl]);
+  }, [ pageNumber, requestUrl]);
 
   return { loading, error, fetchedEvents, hasMore };
 };

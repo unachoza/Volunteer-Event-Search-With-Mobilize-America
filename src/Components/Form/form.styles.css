@@ -3,7 +3,7 @@
   margin: 0px auto;
 }
 .zipcode {
-  height: '37px';
+  height: '60px';
   position: 'absolute';
   box-shadow: '0px 2px 5px rgba(0, 0, 0, 0.2)';
   font-weight: '450';
@@ -16,11 +16,15 @@
 }
 .form__event-filters {
   display: flex;
-  /* width: 100vw; */
+  width: 75%;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0px auto;
   border: 1px solid;
+}
+.form__zip-input input {
+  border: solid 3px;
+  height: 55px;
 }
 
 ::placeholder {
@@ -28,7 +32,7 @@
 }
 input {
   border-radius: 10px;
-  height: 37px;
+  height: 60px;
   width: 80px;
   color: #004ac7;
   font-weight: 450;

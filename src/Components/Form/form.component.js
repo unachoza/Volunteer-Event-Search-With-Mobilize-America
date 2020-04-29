@@ -7,7 +7,8 @@ const Form = (props) => {
   const [query, setQuery] = useState('');
   const [eventTypeQuery, setEventTypeQuery] = useState([]);
   const [addEventTypesVisible, setAddEventTypesVisible] = useState(false);
-   const [choosDateVisible, setChoosDateVisible] = useState(false);
+  const [choosDateVisible, setChoosDateVisible] = useState(false);
+   const [chooseVirtualEvemts, setChooseVirtualEvemts] = useState(false);
 
   const handleZipcodeQuery = (event) => {
     event.preventDefault();
@@ -62,11 +63,16 @@ const Form = (props) => {
             Add Filters
           </button>
         )}
-        {/* {!choosDateVisible && (
+        {!choosDateVisible && (
           <button className="zipcode" onClick={(e) => setChoosDateVisible(true)}>
             Choose Date
           </button>
-        )} */}
+        )}
+        {!choosDateVisible && (
+          <button className="zipcode" onClick={(e) => setChoosDateVisible(true)}>
+           Virtual Events Only
+          </button>
+        )}
       </form>
       {addEventTypesVisible && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
