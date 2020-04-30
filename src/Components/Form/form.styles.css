@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   margin: 0px auto;
   border: solid;
+  height: 27vh;
 }
 
 .zipcode {

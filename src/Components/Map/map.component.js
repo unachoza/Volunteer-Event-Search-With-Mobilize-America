@@ -1,43 +1,34 @@
 import React, { useState } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import './map.styles.css';
+import { mapContainer } from './map.styles.css';
 import EventsContext from '../../Context/event.context';
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const EventMarker = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  const divStyle = {
-    background: `white`,
-    color: '#004ac7',
-    height: '100%',
-    marginLeft: '10px',
-    fontSize: '15px',
-    fontWeight: '600',
-    alignBottom: true,
-    pane: 'mapPane',
-  };
-
   return (
     <EventsContext.Consumer>
       {(fetchedEvents) => (
         <div>
-          {fetchedEvents.some((event) => event.coordinates.lat) ?
-            fetchedEvents.filter((event) => event.coordinates.lat)
-              .map((event, i) => (
-                
-                <Marker
-                  key={i}
-                  defaultAnimation={Animation.bounce}
-                  onClick={() => setSelectedMarker(event)}
-                  markers={event.title}
-                  animation={window.google.maps.Animation.DROP}
-                  position={{
-                    lat: event.coordinates.lat,
-                    lng: event.coordinates.lng,
-                  }}
-                />
-              )) : null}
+          {fetchedEvents.some((event) => event.coordinates.lat)
+            ? fetchedEvents
+                .filter((event) => event.coordinates.lat)
+                .map((event, i) => (
+                  <Marker
+                    key={i}
+                    defaultAnimation={Animation.bounce}
+                    onClick={() => setSelectedMarker(event)}
+                    markers={event.title}
+                    animation={window.google.maps.Animation.DROP}
+                    position={{
+                      lat: event.coordinates.lat,
+                      lng: event.coordinates.lng,
+                    }}
+                  />
+                ))
+            : null}
           {selectedMarker && (
             <InfoWindow
               position={{
@@ -46,7 +37,7 @@ const EventMarker = () => {
               }}
               onCloseClick={() => setSelectedMarker(null)}
             >
-              <div style={divStyle}>
+              <div style={mapContainer}>
                 <p>
                   <a
                     href={selectedMarker.link}
@@ -98,7 +89,7 @@ const Map = () => {
                 overflow: 'hidden',
                 borderRadius: '20px',
                 border: 'solid #0d0a92 2px',
-                boxShadow: '0 1rem 2rem rgba(0,0,0,.8)',
+                boxShadow: '0 1rem 2rem rgba(0,0,0,.8)'
               }}
               zoom={12}
               center={locateMapCenter(fetchedEvents)}

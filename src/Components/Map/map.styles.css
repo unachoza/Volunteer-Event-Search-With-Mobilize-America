@@ -1,8 +1,24 @@
-.map-container {
+export const mapContainer {
+  background: white;
+  color: #004ac7;
+  height: 100%;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  align-bottom: true;
+  pane: mapPane;
   border: solid 2px green;
-  /* float: right; */
-  /* margin: 25px 40px 0px 0px; */
 }
+
+export const mapContainerStyle {
+  height: 60vh;
+  width: 60vw;
+  overflow: hidden;
+  borderradius: 20px;
+  border: solid #0d0a92 2px;
+  boxshadow: 0 1rem 2rem rgba(0, 0, 0, 0.8);
+}
+
 @media only screen and (max-width: 760px) {
   .map-container {
     display: none;

@@ -1,12 +1,11 @@
 .event-list__container {
-  margin: 85px 20px;
+  margin: 11vh 20px 0vh 20px;
   border-radius: 10px;
   width: 30vw;
-  height: 85vh;
   overflow: scroll;
   padding: 0;
   animation: crescendo 0.3s ease-in;
-border: solid blue;
+  border: solid blue;
 }
 
 .no-results {
@@ -96,11 +95,11 @@ li {
     height: 88vh;
     margin: 10px 0px;
   }
-.form__event-filters{
-width: 90vw;
+  .form__event-filters {
+    width: 90vw;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0px 20p;
     margin: 10px 20px -20px;
-}
+  }
 }
