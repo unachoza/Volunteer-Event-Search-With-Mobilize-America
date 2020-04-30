@@ -52,24 +52,30 @@ const Form = (props) => {
       handleZipcodeQuery(event);
     }
   };
+  
 
   return (
     <div className="form__container">
-      <form className="form__zip-input">
-        <div className="form__main">
+      <form>
+        <div className="form__zip-input">
+          <label for="zipcode" className="form__required-field">
+            Enter zip code
+          </label>
           <FormInput
-            className="form__zip-input"
-            placeholder="enter zip code"
+            // className="form__zip-input"
             type="text"
             name="zipcode"
             onKeyPress={keyPressed}
             onBlur={(e) => setQuery(e.target.value)}
-          ></FormInput>
-          <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
-            Search
-          </FilterButton>
+          ></FormInput><br></br>
+          <span style={{ float: 'right' }}>
+            <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+              Search
+            </FilterButton>
+          </span>
         </div>
-        <fieldset>
+
+        {/* <fieldset>
           <legend>Optional Filters</legend>
           <FilterButton
             type="button"
@@ -92,14 +98,14 @@ const Form = (props) => {
           >
             Virtual Events Only
           </FilterButton>
-        </fieldset>
+        </fieldset> */}
       </form>
-      {eventTypesActive && (
+      {/* {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
       {dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )}
+      )} */}
     </div>
   );
 };

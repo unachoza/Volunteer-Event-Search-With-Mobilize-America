@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { MOBILZE_BASE_URL, DEFAULT_ZIPCODE } from '../Constants/constants';
+import { MOBILZE_BASE_URL, DEFAULT_ZIPCODE, CURRENT_EVENTS , DEFAULT_PER_PAGE} from '../Constants/constants';
 
 const normalizeEventData = (event) => ({
   id: event.id,
@@ -18,9 +18,10 @@ const normalizeEventData = (event) => ({
     start: event.timeslots[event.timeslots.length - 1]?.start_date || null,
     end_date: event.timeslots[event.timeslots.length - 1]?.end_date || null,
   },
-  eventImg: event.featured_image_url || null,
   link: event.browser_url || null,
 });
+
+
 
 
 export const useEventsFetch = (pageNumber, requestUrl) => {
@@ -37,16 +38,24 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
     },
     [requestUrl]
   );
+  
+  const paramsObj = {
+      page: pageNumber,
+     per_page: DEFAULT_PER_PAGE,
+      zipcode: DEFAULT_ZIPCODE,
+      timeslot_start: CURRENT_EVENTS,
+      is_virtual: false,
+      // event_types : [],
+    }
 
   useEffect(() => {
-    console.log(loading, 'started?');
     const fetchingFromAPI = async () => {
       try {
         let data;
-        if (pageNumber > 1) data = await axios.get(nextPage);
-        else if (requestUrl) data = await axios.get(requestUrl);
-        else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
-     
+        // if (pageNumber > 1) data = await axios.get(nextPage);
+        // else if (requestUrl) data = await axios.get(requestUrl);
+        // else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
+     data = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj))
         setFetchedEvents((prevEvents) => {
           return [
             ...new Set([
@@ -60,7 +69,6 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
 console.log(data)
         setHasMore(data.data.count > 0);
         setNextPage(data.data.next);
-        console.log(nextPage)
         setLoading(false);
       } catch (e) {
         console.log('this is the error', e, 'but also');
@@ -69,7 +77,6 @@ console.log(data)
     };
     fetchingFromAPI();
   }, [pageNumber, requestUrl]);
-   console.log(loading, 'finished?');
 
   return { loading, error, fetchedEvents, hasMore };
 };
