@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
 import AddDateFilter from './addDateFilter.component';
 import './form.styles.css';
+import Filter from './filter.component.js'
 
 // function isValidUSZip(sZip) {
 //    return /^\d{5}(-\d{4})?$/.test(sZip);
@@ -62,30 +63,30 @@ const Form = (props) => {
           onKeyPress={keyPressed}
           onBlur={(e) => setQuery(e.target.value)}
         />
-        <button onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+        <Filter onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
           Search
-        </button>
-        <button
+        </Filter>
+        <Filter
           type="button"
           className={getButtonClassName(eventTypesActive)}
-          onClick={(e) => setEventTypesActive(!eventTypesActive)}
+          onClick={() => setEventTypesActive(!eventTypesActive)}
         >
           Add Filters
-        </button>
-        <button
+        </Filter>
+        <Filter
           type="button"
           className={getButtonClassName(dateFilterActive)}
-          onClick={(e) => setDateFilterActive(!dateFilterActive)}
+          onClick={() => setDateFilterActive(!dateFilterActive)}
         >
           Choose Date
-        </button>
-        <button
+        </Filter>
+        <Filter
           type="button"
           className={getButtonClassName(virtualFilterActive)}
-          onClick={(e) => setVirtualFilterActive(!virtualFilterActive)}
+          onClick={() => setVirtualFilterActive(!virtualFilterActive)}
         >
           Virtual Events Only
-        </button>
+        </Filter>
       </form>
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
