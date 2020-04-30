@@ -98,11 +98,11 @@ const Form = (props) => {
           </FilterButton>
         </fieldset> */}
       </form>
-      {eventTypesActive && (
+      {!eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
 
-      {dateFilterActive && (
+      {!dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
     </div>
