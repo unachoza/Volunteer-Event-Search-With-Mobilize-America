@@ -39,24 +39,22 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
   );
 
   useEffect(() => {
-    console.log(nextPage);
+    console.log(loading, 'started?');
     // const abortController = new AbortController()
     // const signal = abortController.signal
     const fetchingFromAPI = async () => {
-      setLoading(true);
-      setError(false);
       try {
         let data;
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
-        else data = await axios.get(MOBILZE_BASE_URL)// + '&zipcode=' + DEFAULT_ZIPCODE)
+        else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
      
         setFetchedEvents((prevEvents) => {
           return [
             ...new Set([
               ...prevEvents,
               ...data.data.data
-                .filter((event) => event.is_virtual)
+                // .filter((event) => event.is_virtual)
                 .map((event) => normalizeEventData(event)),
             ]),
           ];
@@ -74,7 +72,8 @@ console.log(data)
       // abortController.abort()
     };
     fetchingFromAPI();
-  }, [ pageNumber, requestUrl]);
+  }, [pageNumber, requestUrl]);
+   console.log(loading, 'finished?');
 
   return { loading, error, fetchedEvents, hasMore };
 };

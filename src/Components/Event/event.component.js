@@ -3,7 +3,6 @@ import EventTagFooter from '../EventTag/eventTag.component';
 import './event.styles.css';
 
 const Event = ({event}) => {
-  console.log(event)
   const [displayDetails, setDisplayDetails] = useState(false);
 
   const getDate = (unixTimestamp) => {

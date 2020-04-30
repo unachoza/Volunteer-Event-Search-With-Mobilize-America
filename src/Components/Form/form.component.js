@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
 import AddDateFilter from './addDateFilter.component';
 import './form.styles.css';
-import Filter from './filter.component.js'
+import FilterButton from './filterButton.component'
+import FormInput from './formInput.component'
 
 // function isValidUSZip(sZip) {
 //    return /^\d{5}(-\d{4})?$/.test(sZip);
@@ -55,38 +56,38 @@ const Form = (props) => {
   return (
     <div className="form__container">
       <form className="form__zip-input">
-        <input
+        <FormInput
           className="form__zip-input"
           placeholder="enter zip code"
           type="text"
           name="zipcode"
           onKeyPress={keyPressed}
           onBlur={(e) => setQuery(e.target.value)}
-        />
-        <Filter onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+        ></FormInput>
+        <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
           Search
-        </Filter>
-        <Filter
+        </FilterButton>
+        <FilterButton
           type="button"
           className={getButtonClassName(eventTypesActive)}
           onClick={() => setEventTypesActive(!eventTypesActive)}
         >
           Add Filters
-        </Filter>
-        <Filter
+        </FilterButton>
+        <FilterButton
           type="button"
           className={getButtonClassName(dateFilterActive)}
           onClick={() => setDateFilterActive(!dateFilterActive)}
         >
           Choose Date
-        </Filter>
-        <Filter
+        </FilterButton>
+        <FilterButton
           type="button"
           className={getButtonClassName(virtualFilterActive)}
           onClick={() => setVirtualFilterActive(!virtualFilterActive)}
         >
           Virtual Events Only
-        </Filter>
+        </FilterButton>
       </form>
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />

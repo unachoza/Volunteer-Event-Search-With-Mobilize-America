@@ -18,4 +18,4 @@ export const EVENT_TYPES = [
   'signature_gathering',
 ];
 
-export const MOBILZE_BASE_URL = `https://api.mobilize.us/v1/events?${DEFAULT_PER_PAGE}&${CURRENT_EVENTS}`;
+export const MOBILZE_BASE_URL = `https://api.mobilize.us/v1/events?${DEFAULT_PER_PAGE}&${EVENTS_IN_2020}`;

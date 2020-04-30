@@ -12,10 +12,11 @@ import { MOBILZE_BASE_URL } from '../Constants/constants';
 const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [requestUrl, setRequestUrl] = useState(null);
-  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, requestUrl);
 
   //infinite scroll
   const observer = useRef();
+  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, requestUrl);
+  
   const lastEventElementRef = useCallback(
     (node) => {
       if (loading) return;
@@ -41,6 +42,7 @@ const App = () => {
     <div>
       <Header />
       <div className="body">
+        {loading &&  <LoadingSpinner loading={loading} />}
         {!loading ? (
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
