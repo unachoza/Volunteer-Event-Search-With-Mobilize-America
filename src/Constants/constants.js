@@ -1,4 +1,4 @@
-export const DEFAULT_PER_PAGE = 'per_page=15';
+export const DEFAULT_PER_PAGE = 'per_page=8';
 export const DEFAULT_ZIPCODE = 11222;
 export const EVENTS_IN_2020 = 'timeslot_start=gte_1577836800';
 export const CURRENT_EVENTS = 'timeslot_start=gte_now';

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
 import AddDateFilter from './addDateFilter.component';
 import './form.styles.css';
-import FilterButton from './filterButton.component'
-import FormInput from './formInput.component'
+import FilterButton from './filterButton.component';
+import FormInput from './formInput.component';
 
 // function isValidUSZip(sZip) {
 //    return /^\d{5}(-\d{4})?$/.test(sZip);
@@ -56,38 +56,43 @@ const Form = (props) => {
   return (
     <div className="form__container">
       <form className="form__zip-input">
-        <FormInput
-          className="form__zip-input"
-          placeholder="enter zip code"
-          type="text"
-          name="zipcode"
-          onKeyPress={keyPressed}
-          onBlur={(e) => setQuery(e.target.value)}
-        ></FormInput>
-        <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
-          Search
-        </FilterButton>
-        <FilterButton
-          type="button"
-          className={getButtonClassName(eventTypesActive)}
-          onClick={() => setEventTypesActive(!eventTypesActive)}
-        >
-          Add Filters
-        </FilterButton>
-        <FilterButton
-          type="button"
-          className={getButtonClassName(dateFilterActive)}
-          onClick={() => setDateFilterActive(!dateFilterActive)}
-        >
-          Choose Date
-        </FilterButton>
-        <FilterButton
-          type="button"
-          className={getButtonClassName(virtualFilterActive)}
-          onClick={() => setVirtualFilterActive(!virtualFilterActive)}
-        >
-          Virtual Events Only
-        </FilterButton>
+        <div className="form__main">
+          <FormInput
+            className="form__zip-input"
+            placeholder="enter zip code"
+            type="text"
+            name="zipcode"
+            onKeyPress={keyPressed}
+            onBlur={(e) => setQuery(e.target.value)}
+          ></FormInput>
+          <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+            Search
+          </FilterButton>
+        </div>
+        <fieldset>
+          <legend>Optional Filters</legend>
+          <FilterButton
+            type="button"
+            className={getButtonClassName(eventTypesActive)}
+            onClick={() => setEventTypesActive(!eventTypesActive)}
+          >
+            Add Event Filters
+          </FilterButton>
+          <FilterButton
+            type="button"
+            className={getButtonClassName(dateFilterActive)}
+            onClick={() => setDateFilterActive(!dateFilterActive)}
+          >
+            Include Past Events
+          </FilterButton>
+          <FilterButton
+            type="button"
+            className={getButtonClassName(virtualFilterActive)}
+            onClick={() => setVirtualFilterActive(!virtualFilterActive)}
+          >
+            Virtual Events Only
+          </FilterButton>
+        </fieldset>
       </form>
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />

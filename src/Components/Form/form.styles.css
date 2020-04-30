@@ -2,6 +2,9 @@
   flex-wrap: wrap;
   margin: 0px auto;
 }
+.form__main {
+  display: inline-flex;
+}
 .zipcode {
   height: '60px';
   position: 'absolute';
@@ -9,9 +12,9 @@
   font-weight: '450';
 }
 
-
 .form__zip-input {
   display: flex;
+  flex-direction: column;
   width: 60%;
   margin: 0px auto;
 }
@@ -24,7 +27,6 @@
   border: 1px solid;
 }
 .form__zip-input input {
-  border: solid 3px;
   height: 55px;
 }
 
@@ -66,10 +68,9 @@ label {
 
 /* // utils /// */
 .active-category {
- color: white;
+  color: white;
   background-color: #004ac7;
 }
-
 
 @media only screen and (max-width: 760px) {
   .form__event-filters {
