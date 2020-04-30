@@ -4,9 +4,10 @@ import './eventList.styles.css';
 import LoadingSpinner from '../loadingSpinner/loadingSpinner.component';
 
 const EventList = ({ events, lastEventElementRef, loading }) => {
-  console.log(events, 'and also the length is', events.length)
+  console.log( 'is it loading', loading);
   return (
     <div className="event-list__container">
+      {loading && <LoadingSpinner loading={loading} />}
       {!events.length ? (
         <div className="no-results">
           Oh dear!<br></br> Your search returned no events.

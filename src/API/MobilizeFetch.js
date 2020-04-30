@@ -40,8 +40,6 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
 
   useEffect(() => {
     console.log(loading, 'started?');
-    // const abortController = new AbortController()
-    // const signal = abortController.signal
     const fetchingFromAPI = async () => {
       try {
         let data;
@@ -65,11 +63,9 @@ console.log(data)
         console.log(nextPage)
         setLoading(false);
       } catch (e) {
-        console.log('this is the error', e.message);
+        console.log('this is the error', e, 'but also');
         setError(true);
       }
-      // return
-      // abortController.abort()
     };
     fetchingFromAPI();
   }, [pageNumber, requestUrl]);

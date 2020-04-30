@@ -25,11 +25,13 @@ const EventMarker = () => {
           {fetchedEvents.some((event) => event.coordinates.lat) ?
             fetchedEvents.filter((event) => event.coordinates.lat)
               .map((event, i) => (
+                
                 <Marker
                   key={i}
                   defaultAnimation={Animation.bounce}
                   onClick={() => setSelectedMarker(event)}
                   markers={event.title}
+                  animation={window.google.maps.Animation.DROP}
                   position={{
                     lat: event.coordinates.lat,
                     lng: event.coordinates.lng,

@@ -15,8 +15,9 @@ const App = () => {
 
   //infinite scroll
   const observer = useRef();
+
   const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, requestUrl);
-  
+
   const lastEventElementRef = useCallback(
     (node) => {
       if (loading) return;
@@ -42,8 +43,9 @@ const App = () => {
     <div>
       <Header />
       <div className="body">
-        {loading &&  <LoadingSpinner loading={loading} />}
-        {!loading ? (
+        {loading ? (
+          <LoadingSpinner loading={loading} />
+        ) : (
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
             <div className="main-page">
@@ -52,8 +54,6 @@ const App = () => {
               <Map />
             </div>
           </EventsContext.Provider>
-        ) : (
-          <LoadingSpinner loading={loading} />
         )}
       </div>
     </div>
