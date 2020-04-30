@@ -1,5 +1,5 @@
 export const DEFAULT_PER_PAGE = 'per_page=15';
-export const DEFAULT_ZIPCODE = 10001;
+export const DEFAULT_ZIPCODE = 11222;
 export const EVENTS_IN_2020 = 'timeslot_start=gte_1577836800';
 export const CURRENT_EVENTS = 'timeslot_start=gte_now';
 export const DATE_FILTER = {
@@ -18,4 +18,4 @@ export const EVENT_TYPES = [
   'signature_gathering',
 ];
 
-export const MOBILZE_BASE_URL = `https://api.mobilize.us/v1/events?${DEFAULT_PER_PAGE}&${EVENTS_IN_2020}`;
+export const MOBILZE_BASE_URL = `https://api.mobilize.us/v1/events?${DEFAULT_PER_PAGE}&${CURRENT_EVENTS}`;

@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
-import AddDateFilter from './addDateFilter.component'
+import AddDateFilter from './addDateFilter.component';
 import './form.styles.css';
+
+// function isValidUSZip(sZip) {
+//    return /^\d{5}(-\d{4})?$/.test(sZip);
+// }
 
 const Form = (props) => {
   const [query, setQuery] = useState('');
   const [eventTypeQuery, setEventTypeQuery] = useState([]);
-  const [addEventTypesVisible, setAddEventTypesVisible] = useState(false);
-  const [choosDateVisible, setChoosDateVisible] = useState(false);
-   const [chooseVirtualEvemts, setChooseVirtualEvemts] = useState(false);
+  const [eventTypesActive, setEventTypesActive] = useState(false);
+  const [dateFilterActive, setDateFilterActive] = useState(false);
+  const [virtualFilterActive, setVirtualFilterActive] = useState(false);
+  // const [addEventTypesVisible, setAddEventTypesVisible] = useState(false);
+  // const [choosDateVisible, setChoosDateVisible] = useState(false);
+  //  const [chooseVirtualEvemts, setChooseVirtualEvemts] = useState(false);
+
+  const getButtonClassName = (isActive) => (isActive ? 'active-category' : 'zipcode');
 
   const handleZipcodeQuery = (event) => {
     event.preventDefault();
@@ -53,31 +62,35 @@ const Form = (props) => {
           onKeyPress={keyPressed}
           onBlur={(e) => setQuery(e.target.value)}
         />
-        {!addEventTypesVisible && (
-          <button onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
-            Search
-          </button>
-        )}
-        {!addEventTypesVisible && (
-          <button className="zipcode" onClick={(e) => setAddEventTypesVisible(true)}>
-            Add Filters
-          </button>
-        )}
-        {!choosDateVisible && (
-          <button className="zipcode" onClick={(e) => setChoosDateVisible(true)}>
-            Choose Date
-          </button>
-        )}
-        {!choosDateVisible && (
-          <button className="zipcode" onClick={(e) => setChoosDateVisible(true)}>
-           Virtual Events Only
-          </button>
-        )}
+        <button onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+          Search
+        </button>
+        <button
+          type="button"
+          className={getButtonClassName(eventTypesActive)}
+          onClick={(e) => setEventTypesActive(!eventTypesActive)}
+        >
+          Add Filters
+        </button>
+        <button
+          type="button"
+          className={getButtonClassName(dateFilterActive)}
+          onClick={(e) => setDateFilterActive(!dateFilterActive)}
+        >
+          Choose Date
+        </button>
+        <button
+          type="button"
+          className={getButtonClassName(virtualFilterActive)}
+          onClick={(e) => setVirtualFilterActive(!virtualFilterActive)}
+        >
+          Virtual Events Only
+        </button>
       </form>
-      {addEventTypesVisible && (
+      {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
-        {choosDateVisible && (
+      {dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
     </div>

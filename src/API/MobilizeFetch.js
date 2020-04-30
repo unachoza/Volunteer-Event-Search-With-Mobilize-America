@@ -49,19 +49,19 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
         let data;
         if (pageNumber > 1) data = await axios.get(nextPage);
         else if (requestUrl) data = await axios.get(requestUrl);
-        else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
+        else data = await axios.get(MOBILZE_BASE_URL)// + '&zipcode=' + DEFAULT_ZIPCODE)
      
         setFetchedEvents((prevEvents) => {
           return [
             ...new Set([
               ...prevEvents,
               ...data.data.data
-                // .filter((event) => event.is_virtual)
+                .filter((event) => event.is_virtual)
                 .map((event) => normalizeEventData(event)),
             ]),
           ];
         });
-
+console.log(data)
         setHasMore(data.data.count > 0);
         setNextPage(data.data.next);
         console.log(nextPage)

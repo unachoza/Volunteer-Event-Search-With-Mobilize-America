@@ -9,6 +9,7 @@
   font-weight: '450';
 }
 
+
 .form__zip-input {
   display: flex;
   width: 60%;
@@ -62,6 +63,13 @@ label {
   width: 20px;
   font-size: 15px;
 }
+
+/* // utils /// */
+.active-category {
+ color: white;
+  background-color: #004ac7;
+}
+
 
 @media only screen and (max-width: 760px) {
   .form__event-filters {
