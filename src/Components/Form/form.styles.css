@@ -1,23 +1,12 @@
+form {
+  display: flex;
+}
 .form__container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin: 10px auto;
   width: 100%;
-}
-
-.zipcode {
-  position: relative;
-  bottom: -23px;
-  left: 10px;
-}
-.form__required-field::after {
-  content: ' *';
-  color: red;
-}
-#zipcode-input {
-  width: 200px;
-  height: 37px;
 }
 .form__zip-input-container {
   display: flex;
@@ -28,6 +17,24 @@
   flex-direction: column;
   height: 55px important;
 }
+#zipcode-input {
+  width: 200px;
+  height: 37px;
+}
+
+.zipcode {
+  position: relative;
+  bottom: -23px;
+  left: 10px;
+}
+.required-field::after {
+  content: ' *';
+  color: red;
+}
+.form__optional-filters {
+  margin: -5px;
+}
+
 .form__event-filters {
   display: flex;
   width: 75%;

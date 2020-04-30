@@ -47,14 +47,14 @@ const Form = (props) => {
     if (event.key === 'Enter') {
       handleZipcodeQuery(event);
     }
-  };
+  }
 
   return (
     <div className="form__container">
       <form>
         <div className="form__zip-input-container">
           <div className="form__zip-input" style={{ height: '63px' }}>
-            <label for="zipcode" className="form__required-field">
+            <label for="zipcode" className="required-field">
               Enter zip code
             </label>
             <FormInput
@@ -72,31 +72,38 @@ const Form = (props) => {
             </FilterButton>
           </div>
         </div>
+        <div className="form__optional-filters">
+          <label >
+            Optional Filters
+          </label>
+          <div style={{margin: "-20px 0px 0px -21px"}}> 
+            <FilterButton
+              type="button"
+              className={getButtonClassName(eventTypesActive)}
+              onClick={() => setEventTypesActive(!eventTypesActive)}
+            >
+              Add Event Filters
+            </FilterButton>
+            <FilterButton
+              type="button"
+              className={getButtonClassName(dateFilterActive)}
+              onClick={() => setDateFilterActive(!dateFilterActive)}
+            >
+              Include Past Events
+            </FilterButton>
+            <FilterButton
+              type="button"
+              className={getButtonClassName(virtualFilterActive)}
+              onClick={() => setVirtualFilterActive(!virtualFilterActive)}
+            >
+              Virtual Events Only
+            </FilterButton>
+          </div>
+          {/* <fieldset> */}
+          {/* <legend>Optional Filters</legend> */}
 
-        {/* <fieldset>
-          <legend>Optional Filters</legend>
-          <FilterButton
-            type="button"
-            className={getButtonClassName(eventTypesActive)}
-            onClick={() => setEventTypesActive(!eventTypesActive)}
-          >
-            Add Event Filters
-          </FilterButton>
-          <FilterButton
-            type="button"
-            className={getButtonClassName(dateFilterActive)}
-            onClick={() => setDateFilterActive(!dateFilterActive)}
-          >
-            Include Past Events
-          </FilterButton>
-          <FilterButton
-            type="button"
-            className={getButtonClassName(virtualFilterActive)}
-            onClick={() => setVirtualFilterActive(!virtualFilterActive)}
-          >
-            Virtual Events Only
-          </FilterButton>
-        </fieldset> */}
+          {/* </fieldset> */}
+        </div>
       </form>
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
