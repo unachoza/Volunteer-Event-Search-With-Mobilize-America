@@ -84,8 +84,9 @@ const Map = () => {
             <GoogleMap
               id="circle-example"
               mapContainerStyle={{
-                height: '60vh',
-                width: '60vw',
+                height: '100%',
+                width: '67vw',
+                margin: '1vh, 1vw, 1vh, 1vw',
                 overflow: 'hidden',
                 borderRadius: '20px',
                 border: 'solid #0d0a92 2px',

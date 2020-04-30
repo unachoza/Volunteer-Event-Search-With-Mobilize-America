@@ -1,5 +1,6 @@
 .event-list__container {
   margin: 11vh 20px 0vh 20px;
+  height: 85vh;
   border-radius: 10px;
   width: 30vw;
   overflow: scroll;

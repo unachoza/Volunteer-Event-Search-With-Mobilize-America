@@ -1,6 +1,6 @@
 export const DEFAULT_PER_PAGE = '8';
 export const DEFAULT_ZIPCODE = 11222;
-export const EVENTS_IN_2020 = 'timeslot_start=gte_1577836800';
+export const EVENTS_IN_2020 = 'gte_1577836800';
 export const CURRENT_EVENTS = 'gte_now';
 export const DATE_FILTER = {
   APRIL_2020: 'timeslot_start=gte_1585699200& timeslot_start=lt_1588204800',

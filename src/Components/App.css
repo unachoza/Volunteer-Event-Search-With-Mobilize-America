@@ -39,12 +39,13 @@ button:active {
   transform: translateY(-1px);
 }
 .main-page {
-    margin-top: 11vh;
-    width: 70vw;
-    height: 89vh;
-    border: solid 2px red;
+  display: flex;
+  flex-direction: column;
+  margin-top: 11vh;
+  width: 71vw;
+  height: 89vh;
+  border: solid 2px red;
 }
-
 
 @media only screen and (max-width: 760px) {
   body {

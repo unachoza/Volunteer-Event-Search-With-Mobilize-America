@@ -53,13 +53,13 @@ const Form = (props) => {
     <div className="form__container">
       <form>
         <div className="form__zip-input-container">
-          <div className="form__zip-input" style={{height: "63px"}}>
+          <div className="form__zip-input" style={{ height: '63px' }}>
             <label for="zipcode" className="form__required-field">
               Enter zip code
             </label>
             <FormInput
               id="zipcode-input"
-              style={{height: '40px'}}
+              style={{ height: '40px' }}
               type="text"
               name="zipcode"
               onKeyPress={keyPressed}
@@ -98,13 +98,13 @@ const Form = (props) => {
           </FilterButton>
         </fieldset> */}
       </form>
-     {!eventTypesActive && (
+      {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )} 
-        {/* 
+      )}
+
       {dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )} */}
+      )}
     </div>
   );
 };

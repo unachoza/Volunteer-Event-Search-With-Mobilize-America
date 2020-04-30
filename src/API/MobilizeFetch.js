@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { MOBILZE_BASE_URL, DEFAULT_ZIPCODE, CURRENT_EVENTS , DEFAULT_PER_PAGE} from '../Constants/constants';
+import { MOBILZE_BASE_URL, DEFAULT_ZIPCODE, CURRENT_EVENTS , DEFAULT_PER_PAGE, EVENTS_IN_2020} from '../Constants/constants';
 
 const normalizeEventData = (event) => ({
   id: event.id,
@@ -43,7 +43,7 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
       page: pageNumber,
      per_page: DEFAULT_PER_PAGE,
       zipcode: DEFAULT_ZIPCODE,
-      timeslot_start: CURRENT_EVENTS,
+      timeslot_start: EVENTS_IN_2020,
       is_virtual: false,
       // event_types : [],
     }
