@@ -98,9 +98,9 @@ const Form = (props) => {
           </FilterButton>
         </fieldset> */}
       </form>
-    {/* {!eventTypesActive && (
+     {!eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )} */}
+      )} 
         {/* 
       {dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />

@@ -1,14 +1,12 @@
 .event-list__container {
-  height: 85vh;
   margin: 85px 20px;
   border-radius: 10px;
-  box-shadow: black;
   width: 30vw;
-  height: 80vh;
-  margin-top: 13vh 0;
+  height: 85vh;
   overflow: scroll;
   padding: 0;
   animation: crescendo 0.3s ease-in;
+border: solid blue;
 }
 
 .no-results {

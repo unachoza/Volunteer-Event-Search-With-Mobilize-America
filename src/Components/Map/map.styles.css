@@ -1,6 +1,7 @@
 .map-container {
-  float: right;
- margin: 25px 40px 0px 0px
+  border: solid 2px green;
+  /* float: right; */
+  /* margin: 25px 40px 0px 0px; */
 }
 @media only screen and (max-width: 760px) {
   .map-container {

@@ -3,6 +3,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin: 0px auto;
+  border: solid;
 }
 
 .zipcode {
@@ -11,12 +12,12 @@
   left: 10px;
 }
 .form__required-field::after {
-  content: '*';
+  content: ' *';
   color: red;
 }
 #zipcode-input {
   width: 200px;
-height: 37px;
+  height: 37px;
 }
 .form__zip-input-container {
   display: flex;
@@ -44,10 +45,8 @@ input {
   border-radius: 2px;
   height: 60px;
   width: 80px;
-  color: #004ac7;
-  font-weight: 450;
   border: none;
-  text-align: center;
+  padding: 6px;
   font-size: 18px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
