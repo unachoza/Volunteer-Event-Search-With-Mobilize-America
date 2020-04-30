@@ -1,23 +1,32 @@
 .form__container {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   margin: 0px auto;
 }
 
 .zipcode {
-  position: 'absolute';
-  box-shadow: '0px 2px 5px rgba(0, 0, 0, 0.2)';
-  font-weight: '450';
+  position: relative;
+  bottom: -23px;
+  left: 10px;
 }
 .form__required-field::after {
   content: '*';
   color: red;
 }
-.form__zip-input {
+#zipcode-input {
+  width: 200px;
+height: 37px;
+}
+.form__zip-input-container {
+  display: flex;
+  align-items: flex-start;
   width: 400px;
-  height: 100px;
-
+}
+.form__zip-input {
+  display: flex;
+  flex-direction: column;
+  height: 55px important;
 }
 .form__event-filters {
   display: flex;
@@ -26,10 +35,6 @@ flex-direction: column;
   flex-wrap: wrap;
   margin: 0px auto;
   border: 1px solid;
-}
-.form__zip-input input {
-  height: 55px;
-  width: 100px;
 }
 
 ::placeholder {
@@ -63,7 +68,8 @@ input[type='checkbox']:checked + label:before {
 }
 
 label {
-  font-size: 15px;
+  font-size: 16px;
+  margin: 0px 0px 5px 0px;
 }
 
 /* // utils /// */

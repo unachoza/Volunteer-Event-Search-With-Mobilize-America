@@ -5,10 +5,6 @@ import './form.styles.css';
 import FilterButton from './filterButton.component';
 import FormInput from './formInput.component';
 
-// function isValidUSZip(sZip) {
-//    return /^\d{5}(-\d{4})?$/.test(sZip);
-// }
-
 const Form = (props) => {
   const [query, setQuery] = useState('');
   const [eventTypeQuery, setEventTypeQuery] = useState([]);
@@ -52,27 +48,29 @@ const Form = (props) => {
       handleZipcodeQuery(event);
     }
   };
-  
 
   return (
     <div className="form__container">
       <form>
-        <div className="form__zip-input">
-          <label for="zipcode" className="form__required-field">
-            Enter zip code
-          </label>
-          <FormInput
-            // className="form__zip-input"
-            type="text"
-            name="zipcode"
-            onKeyPress={keyPressed}
-            onBlur={(e) => setQuery(e.target.value)}
-          ></FormInput><br></br>
-          <span style={{ float: 'right' }}>
+        <div className="form__zip-input-container">
+          <div className="form__zip-input" style={{height: "63px"}}>
+            <label for="zipcode" className="form__required-field">
+              Enter zip code
+            </label>
+            <FormInput
+              id="zipcode-input"
+              style={{height: '40px'}}
+              type="text"
+              name="zipcode"
+              onKeyPress={keyPressed}
+              onBlur={(e) => setQuery(e.target.value)}
+            ></FormInput>
+          </div>
+          <div>
             <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
               Search
             </FilterButton>
-          </span>
+          </div>
         </div>
 
         {/* <fieldset>
@@ -100,9 +98,10 @@ const Form = (props) => {
           </FilterButton>
         </fieldset> */}
       </form>
-      {/* {eventTypesActive && (
+    {/* {!eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )}
+      )} */}
+        {/* 
       {dateFilterActive && (
         <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )} */}
@@ -111,3 +110,14 @@ const Form = (props) => {
 };
 
 export default Form;
+
+//     border-radius: 2px;
+//     height: 60px;
+//     width: 80px;
+//     /* color: #004ac7; */
+//     font-weight: 450;
+//     border: none;
+//     /* text-align: center; */
+//     font-size: 18px;
+//     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+// }
