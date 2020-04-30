@@ -44,7 +44,6 @@ button:active {
   margin-top: 11vh;
   width: 71vw;
   height: 89vh;
-  border: solid 2px red;
 }
 
 @media only screen and (max-width: 760px) {
@@ -56,5 +55,8 @@ button:active {
   }
   .main-page {
     width: 100vw;
+    height: auto;
   }
 }
+
+/* //breakpoint 850px */

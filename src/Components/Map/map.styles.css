@@ -19,8 +19,8 @@ export const mapContainerStyle {
   boxshadow: 0 1rem 2rem rgba(0, 0, 0, 0.8);
 }
 .map-container {
-  max-height: 77vh;
-
+  max-height: 75vh;
+  margin: 4% 4% 4% 0%;
   flex-grow: 1;
 }
 

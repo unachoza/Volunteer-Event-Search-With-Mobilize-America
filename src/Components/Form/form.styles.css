@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 0px auto;
-  border: solid;
-
+  margin: 10px auto;
+  width: 100%;
 }
 
 .zipcode {
@@ -22,7 +21,6 @@
 }
 .form__zip-input-container {
   display: flex;
-  align-items: flex-start;
   width: 400px;
 }
 .form__zip-input {
@@ -88,7 +86,10 @@ label {
   }
   .form__zip-input {
     display: flex;
-    width: 87%;
-    margin: 0px auto;
+    width: 50%;
+    margin: 0px 23px;
+  }
+  .form__zip-input-container {
+    width: 100%;
   }
 }
