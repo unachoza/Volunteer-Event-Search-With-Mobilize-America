@@ -23,7 +23,7 @@ const App = () => {
 
   //infinite scroll
   const observer = useRef();
-console.log(dataRange)
+  console.log(dataRange);
   const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, zipcode, dataRange, isVirtual);
 
   const lastEventElementRef = useCallback(
@@ -43,10 +43,10 @@ console.log(dataRange)
   );
 
   const updateZipcode = (input) => setZipcode(input);
-  
-  const updateDateRange = (dataRange) => setDateRange(dataRange === EVENTS_IN_2020 ? CURRENT_EVENTS : EVENTS_IN_2020);
-  
-  
+
+  const updateDateRange = (input) => setDateRange
+    (input ? EVENTS_IN_2020 : CURRENT_EVENTS);
+
   const updateIsVirtual = (input) => setIsVirtual(input);
 
   return (
@@ -59,11 +59,7 @@ console.log(dataRange)
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
             <div className="main-page">
-              <Form
-                updateZipcode={updateZipcode}
-                updateDateRange={updateDateRange}
-                updateIsVirtual={updateIsVirtual}
-              />
+              <Form updateZipcode={updateZipcode} updateDateRange={updateDateRange} updateIsVirtual={updateIsVirtual} />
               {error && <div>ZipCode Not Valid</div>}
               <Map />
             </div>
