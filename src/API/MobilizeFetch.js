@@ -24,30 +24,29 @@ const normalizeEventData = (event) => ({
 
 
 
-export const useEventsFetch = (pageNumber, requestUrl) => {
+export const useEventsFetch = (pageNumber, zipcode, dataRange) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [nextPage, setNextPage] = useState(null);
-
+console.log(dataRange)
   useEffect(
     (nextPage, fetchedEvents) => {
       setNextPage(null);
       setFetchedEvents([]);
     },
-    [requestUrl]
+    [zipcode, dataRange]
   );
-  
   const paramsObj = {
       page: pageNumber,
-     per_page: DEFAULT_PER_PAGE,
-      zipcode: DEFAULT_ZIPCODE,
-      timeslot_start: EVENTS_IN_2020,
-      is_virtual: false,
+      per_page: DEFAULT_PER_PAGE,
+      zipcode: zipcode,
+      timeslot_start: dataRange,
+      // is_virtual: false,
       // event_types : [],
     }
-
+console.log(dataRange)
   useEffect(() => {
     const fetchingFromAPI = async () => {
       try {
@@ -66,7 +65,7 @@ export const useEventsFetch = (pageNumber, requestUrl) => {
             ]),
           ];
         });
-console.log(data)
+        console.log(data)
         setHasMore(data.data.count > 0);
         setNextPage(data.data.next);
         setLoading(false);
@@ -76,7 +75,7 @@ console.log(data)
       }
     };
     fetchingFromAPI();
-  }, [pageNumber, requestUrl]);
+  }, [pageNumber, zipcode, dataRange]);
 
   return { loading, error, fetchedEvents, hasMore };
 };

@@ -10,15 +10,12 @@ const Form = (props) => {
   const [eventTypesActive, setEventTypesActive] = useState(false);
   const [dateFilterActive, setDateFilterActive] = useState(false);
   const [virtualFilterActive, setVirtualFilterActive] = useState(false);
-  // const [addEventTypesVisible, setAddEventTypesVisible] = useState(false);
-  // const [choosDateVisible, setChoosDateVisible] = useState(false);
-  //  const [chooseVirtualEvemts, setChooseVirtualEvemts] = useState(false);
 
   const getButtonClassName = (isActive) => (isActive ? 'active-category' : 'filter-button');
 
   const handleZipcodeQuery = (event) => {
-    event.preventDefault();
-    props.updateRequestUrl(query);
+    event.preventDefault()
+   props.updateZipcode(query);
   };
 
   const clearCheckboxesFromForm = () => {
@@ -44,9 +41,14 @@ const Form = (props) => {
   const keyPressed = (event) => {
     setQuery(query + event.key);
     if (event.key === 'Enter') {
-      handleZipcodeQuery(event);
+      props.updateZipcode(event);
     }
   };
+  const activeDateFilter = () => {
+    console.log('working')
+    setDateFilterActive(!dateFilterActive)
+    props.updateDateRange()
+  }
 
   return (
     <div className="form__container">
@@ -84,7 +86,7 @@ const Form = (props) => {
             <FilterButton
               type="button"
               className={getButtonClassName(dateFilterActive)}
-              onClick={() => setDateFilterActive(!dateFilterActive)}
+              onClick={() => activeDateFilter()}
             >
               Add Past Events
             </FilterButton>
@@ -101,7 +103,6 @@ const Form = (props) => {
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
-     
     </div>
   );
 };

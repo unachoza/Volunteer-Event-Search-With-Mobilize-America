@@ -7,16 +7,24 @@ import { useEventsFetch } from '../API/MobilizeFetch';
 import EventsContext from '../Context/event.context';
 import './App.css';
 import LoadingSpinner from './loadingSpinner/loadingSpinner.component';
-import { MOBILZE_BASE_URL } from '../Constants/constants';
+import {
+  MOBILZE_BASE_URL,
+  DEFAULT_ZIPCODE,
+  CURRENT_EVENTS,
+  DEFAULT_PER_PAGE,
+  EVENTS_IN_2020,
+} from '../Constants/constants';
 
 const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [requestUrl, setRequestUrl] = useState(null);
+  const [zipcode, setZipcode] = useState(DEFAULT_ZIPCODE);
+  const [dataRange, setDateRange] = useState(CURRENT_EVENTS);
+  const [isVirtual, setIsVirtual] = useState(false);
 
   //infinite scroll
   const observer = useRef();
-
-  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, requestUrl);
+console.log(dataRange)
+  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, zipcode, dataRange, isVirtual);
 
   const lastEventElementRef = useCallback(
     (node) => {
@@ -34,10 +42,12 @@ const App = () => {
     [loading, hasMore]
   );
 
-  const updateRequestUrl = (input, moreInputs = '') => {
-    setRequestUrl(MOBILZE_BASE_URL + '&zipcode=' + input + moreInputs);
-    setPageNumber(1);
-  };
+  const updateZipcode = (input) => setZipcode(input);
+  
+  const updateDateRange = (dataRange) => setDateRange(dataRange === EVENTS_IN_2020 ? CURRENT_EVENTS : EVENTS_IN_2020);
+  
+  
+  const updateIsVirtual = (input) => setIsVirtual(input);
 
   return (
     <div>
@@ -49,7 +59,11 @@ const App = () => {
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
             <div className="main-page">
-              <Form updateRequestUrl={updateRequestUrl} />
+              <Form
+                updateZipcode={updateZipcode}
+                updateDateRange={updateDateRange}
+                updateIsVirtual={updateIsVirtual}
+              />
               {error && <div>ZipCode Not Valid</div>}
               <Map />
             </div>

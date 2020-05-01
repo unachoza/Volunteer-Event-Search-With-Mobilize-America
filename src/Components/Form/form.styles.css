@@ -79,7 +79,7 @@ input[type='checkbox']:checked + label:before {
   background-color: #004ac7;
 }
 .event-type__option {
-margin: 5px 0px
+  margin: 5px 0px;
 }
 
 label {
@@ -111,5 +111,12 @@ label {
   }
   .form__zip-input-container {
     width: 100%;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .form__optional-filters {
+    margin: 0 auto;
   }
 }
