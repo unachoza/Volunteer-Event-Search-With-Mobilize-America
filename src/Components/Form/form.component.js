@@ -15,7 +15,7 @@ const Form = (props) => {
   // const [choosDateVisible, setChoosDateVisible] = useState(false);
   //  const [chooseVirtualEvemts, setChooseVirtualEvemts] = useState(false);
 
-  const getButtonClassName = (isActive) => (isActive ? 'active-category' : 'zipcode');
+  const getButtonClassName = (isActive) => (isActive ? 'active-category' : 'filter-button');
 
   const handleZipcodeQuery = (event) => {
     event.preventDefault();
@@ -47,7 +47,7 @@ const Form = (props) => {
     if (event.key === 'Enter') {
       handleZipcodeQuery(event);
     }
-  }
+  };
 
   return (
     <div className="form__container">
@@ -67,16 +67,14 @@ const Form = (props) => {
             ></FormInput>
           </div>
           <div>
-            <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} className="zipcode">
+            <FilterButton onClick={handleZipcodeQuery} onKeyPress={keyPressed} id="search-button">
               Search
             </FilterButton>
           </div>
         </div>
         <div className="form__optional-filters">
-          <label >
-            Optional Filters
-          </label>
-          <div style={{margin: "-20px 0px 0px -21px"}}> 
+          <label>Optional Filters</label>
+          <div style={{ margin: '-20px 0px 0px -21px' }}>
             <FilterButton
               type="button"
               className={getButtonClassName(eventTypesActive)}
@@ -96,13 +94,9 @@ const Form = (props) => {
               className={getButtonClassName(virtualFilterActive)}
               onClick={() => setVirtualFilterActive(!virtualFilterActive)}
             >
-              Virtual Events Only
+              Virtual Events
             </FilterButton>
           </div>
-          {/* <fieldset> */}
-          {/* <legend>Optional Filters</legend> */}
-
-          {/* </fieldset> */}
         </div>
       </form>
       {eventTypesActive && (
@@ -117,14 +111,3 @@ const Form = (props) => {
 };
 
 export default Form;
-
-//     border-radius: 2px;
-//     height: 60px;
-//     width: 80px;
-//     /* color: #004ac7; */
-//     font-weight: 450;
-//     border: none;
-//     /* text-align: center; */
-//     font-size: 18px;
-//     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-// }

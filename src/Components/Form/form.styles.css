@@ -22,7 +22,15 @@ form {
   height: 37px;
 }
 
-.zipcode {
+.filter-button {
+  position: relative;
+  bottom: -23px;
+  left: 10px;
+  background-color: white;
+  color: #004ac7;
+  border: 1px solid #004ac7;
+}
+#search-button {
   position: relative;
   bottom: -23px;
   left: 10px;
@@ -79,8 +87,11 @@ label {
 
 /* // utils /// */
 .active-category {
-  color: white;
+  position: relative;
+  bottom: -23px;
+  left: 10px;
   background-color: #004ac7;
+  border: 1px solid #004ac7;
 }
 
 @media only screen and (max-width: 760px) {
