@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AddEventFilter from './addEventFilter.component';
-import AddDateFilter from './addDateFilter.component';
 import './form.styles.css';
 import FilterButton from './filterButton.component';
 import FormInput from './formInput.component';
@@ -87,7 +86,7 @@ const Form = (props) => {
               className={getButtonClassName(dateFilterActive)}
               onClick={() => setDateFilterActive(!dateFilterActive)}
             >
-              Include Past Events
+              Add Past Events
             </FilterButton>
             <FilterButton
               type="button"
@@ -102,10 +101,7 @@ const Form = (props) => {
       {eventTypesActive && (
         <AddEventFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
       )}
-
-      {dateFilterActive && (
-        <AddDateFilter handleEventFilters={handleEventFilters} doneAddingEvents={doneAddingEvents} />
-      )}
+     
     </div>
   );
 };

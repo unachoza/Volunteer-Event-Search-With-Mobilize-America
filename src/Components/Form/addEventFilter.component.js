@@ -9,13 +9,13 @@ const AddEventFilter = ({ handleEventFilters, doneAddingEvents }) => {
       {EVENT_TYPES.map((event, i) => (
         <div key={i} className="event-type__option">
           <input type="checkbox" id={event} name={event} value={event} hidden onClick={handleEventFilters} />
-          <label for={event} value={event}>
+          <label for={event} value={event} id="checkbox-option">
             {formatEventTypes(event)}
           </label>
         </div>
       ))}
       <span style={{ display: 'flex', margin: '0px auto' }}>
-        <button onClick={(event) => doneAddingEvents(event)}>submit</button>
+        {/* <button onClick={(event) => doneAddingEvents(event)}>submit</button> */}
       </span>
     </form>
   );
