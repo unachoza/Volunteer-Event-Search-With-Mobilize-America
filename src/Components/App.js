@@ -23,7 +23,7 @@ const App = () => {
 
   //infinite scroll
   const observer = useRef();
-  console.log(dataRange);
+  console.log(isVirtual);
   const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, zipcode, dataRange, isVirtual);
 
   const lastEventElementRef = useCallback(

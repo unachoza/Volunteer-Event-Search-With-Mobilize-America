@@ -18,6 +18,7 @@ const Form = (props) => {
     event.preventDefault()
     props.updateZipcode(query);
     props.updateDateRange(includePast)
+    props.updateIsVirtual(virtualFilterActive)
     
   };
 
@@ -51,6 +52,10 @@ const Form = (props) => {
     console.log('working')
     setDateFilterActive(!dateFilterActive)
     setIncludePast(!includePast)
+  }
+  const activateVirualFilter = () => {
+    setVirtualFilterActive(!virtualFilterActive)
+  
   }
 
   return (
@@ -96,7 +101,7 @@ const Form = (props) => {
             <FilterButton
               type="button"
               className={getButtonClassName(virtualFilterActive)}
-              onClick={() => setVirtualFilterActive(!virtualFilterActive)}
+              onClick={() => activateVirualFilter()}
             >
               Virtual Events
             </FilterButton>

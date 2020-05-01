@@ -24,36 +24,32 @@ const normalizeEventData = (event) => ({
 
 
 
-export const useEventsFetch = (pageNumber, zipcode, dataRange) => {
+export const useEventsFetch = (pageNumber, zipcode, dataRange, isVirtual) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [hasMore, setHasMore] = useState(false);
-  const [nextPage, setNextPage] = useState(null);
 console.log(dataRange)
   useEffect(
     (nextPage, fetchedEvents) => {
-      setNextPage(null);
       setFetchedEvents([]);
     },
-    [zipcode, dataRange]
+    [zipcode, dataRange, isVirtual]
   );
   const paramsObj = {
       page: pageNumber,
       per_page: DEFAULT_PER_PAGE,
       zipcode: zipcode,
       timeslot_start: dataRange,
-      // is_virtual: false,
+      is_virtual: isVirtual,
       // event_types : [],
     }
-console.log(dataRange)
+console.log(isVirtual)
   useEffect(() => {
     const fetchingFromAPI = async () => {
       try {
         let data;
-        // if (pageNumber > 1) data = await axios.get(nextPage);
-        // else if (requestUrl) data = await axios.get(requestUrl);
-        // else data = await axios.get(MOBILZE_BASE_URL + '&zipcode=' + DEFAULT_ZIPCODE)
+        if(isVirtual === true) data  = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj).delete(zipcode))
      data = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj))
         setFetchedEvents((prevEvents) => {
           return [
@@ -65,10 +61,10 @@ console.log(dataRange)
             ]),
           ];
         });
-        console.log(data)
         setHasMore(data.data.count > 0);
-        setNextPage(data.data.next);
         setLoading(false);
+        console.log(data)
+        
       } catch (e) {
         console.log('this is the error', e, 'but also');
         setError(true);
