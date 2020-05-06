@@ -24,39 +24,50 @@ const normalizeEventData = (event) => ({
 
 
 
-export const useEventsFetch = (pageNumber, zipcode, dataRange, isVirtual) => {
+export const useEventsFetch = (pageNumber, zipcode, dataRange, isVirtual, eventFilters) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [hasMore, setHasMore] = useState(false);
-console.log(dataRange)
   useEffect(
     (nextPage, fetchedEvents) => {
       setFetchedEvents([]);
     },
-    [zipcode, dataRange, isVirtual]
+    [zipcode, dataRange, isVirtual, eventFilters]
   );
   const paramsObj = {
       page: pageNumber,
       per_page: DEFAULT_PER_PAGE,
-      zipcode: zipcode,
+      zipcode,
       timeslot_start: dataRange,
-      is_virtual: isVirtual,
-      // event_types : [],
-    }
-console.log(isVirtual)
+    is_virtual: isVirtual,
+  }
   useEffect(() => {
     const fetchingFromAPI = async () => {
       try {
         let data;
-        if(isVirtual === true) data  = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj).delete(zipcode))
+        if (isVirtual === true) {
+          data = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj).delete(zipcode))
+        }
+          
+        else if (eventFilters.length > 0) {
+          console.log('event type are registring ')
+          const params = new URLSearchParams(paramsObj)
+          eventFilters.forEach((filter) =>  params.append("event_types", filter))
+          // params.append("event_types", "phone_bank")
+          params.forEach(function (value, key) {
+            console.log( key, value)
+          })
+        }
+          data = await axios.get(MOBILZE_BASE_URL)
+        
+        
      data = await axios.get(MOBILZE_BASE_URL + new URLSearchParams(paramsObj))
         setFetchedEvents((prevEvents) => {
           return [
             ...new Set([
               ...prevEvents,
               ...data.data.data
-                // .filter((event) => event.is_virtual)
                 .map((event) => normalizeEventData(event)),
             ]),
           ];
@@ -71,7 +82,7 @@ console.log(isVirtual)
       }
     };
     fetchingFromAPI();
-  }, [pageNumber, zipcode, dataRange]);
+  }, [pageNumber, zipcode, dataRange, eventFilters]);
 
   return { loading, error, fetchedEvents, hasMore };
 };

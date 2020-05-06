@@ -20,11 +20,17 @@ const App = () => {
   const [zipcode, setZipcode] = useState(DEFAULT_ZIPCODE);
   const [dataRange, setDateRange] = useState(CURRENT_EVENTS);
   const [isVirtual, setIsVirtual] = useState(false);
+  const [eventFilters, setEventFilters] = useState([]);
 
   //infinite scroll
   const observer = useRef();
-  console.log(isVirtual);
-  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(pageNumber, zipcode, dataRange, isVirtual);
+  const { loading, error, fetchedEvents, hasMore } = useEventsFetch(
+    pageNumber,
+    zipcode,
+    dataRange,
+    isVirtual,
+    eventFilters
+  );
 
   const lastEventElementRef = useCallback(
     (node) => {
@@ -44,10 +50,10 @@ const App = () => {
 
   const updateZipcode = (input) => setZipcode(input);
 
-  const updateDateRange = (input) => setDateRange
-    (input ? EVENTS_IN_2020 : CURRENT_EVENTS);
+  const updateDateRange = (input) => setDateRange(input ? EVENTS_IN_2020 : CURRENT_EVENTS);
 
   const updateIsVirtual = (input) => setIsVirtual(input);
+  const updateEventFilters = (input) => setEventFilters(input);
 
   return (
     <div>
@@ -59,7 +65,12 @@ const App = () => {
           <EventsContext.Provider value={fetchedEvents}>
             <EventList events={fetchedEvents} loading={loading} lastEventElementRef={lastEventElementRef} />
             <div className="main-page">
-              <Form updateZipcode={updateZipcode} updateDateRange={updateDateRange} updateIsVirtual={updateIsVirtual} />
+              <Form
+                updateZipcode={updateZipcode}
+                updateDateRange={updateDateRange}
+                updateIsVirtual={updateIsVirtual}
+                updateEventFilters={updateEventFilters}
+              />
               {error && <div>ZipCode Not Valid</div>}
               <Map />
             </div>

@@ -4,6 +4,7 @@
   background-color: blueviolet;
   color: white;
   width: fit-content;
+  min-width: 100px;
   padding: 0px 5px;
   height: 21px;
   font-size: 10px;
@@ -11,8 +12,19 @@
   display: flex;
   justify-content: center;
 }
-.tag__container{
-display: flex;
-justify-content: space-between;
-margin-right: 10px
+.tag__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+.sub-1 {
+}
+.sub-2 {
+}
+#join {
+  height: 50px;
+  width: 100px;
+  font-size: 15px;
+  font-weight: 450;
 }

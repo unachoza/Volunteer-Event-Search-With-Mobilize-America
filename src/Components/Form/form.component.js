@@ -12,14 +12,14 @@ const Form = (props) => {
   const [virtualFilterActive, setVirtualFilterActive] = useState(false);
   const [includePast, setIncludePast] = useState(false);
 
-  const getButtonClassName = (isActive) => (isActive ? 'active-category' : 'filter-button');
+  const getFilterButtonClassName = (isActive) => (isActive ? 'active-category' : 'filter-button');
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     props.updateZipcode(query);
-    props.updateDateRange(includePast)
-    props.updateIsVirtual(virtualFilterActive)
-    
+    props.updateDateRange(includePast);
+    props.updateIsVirtual(virtualFilterActive);
+    clearCheckboxesFromForm();
   };
 
   const clearCheckboxesFromForm = () => {
@@ -29,18 +29,15 @@ const Form = (props) => {
   const handleEventFilters = (event) => {
     const { value } = event.target;
     setEventTypeQuery([...eventTypeQuery, value]);
+    console.log(eventTypeQuery);
   };
 
   const doneAddingEvents = (event) => {
     event.preventDefault();
-    const moreInputs =
-      eventTypeQuery.length > 1
-        ? eventTypeQuery.map((type) => '&event_types=' + type).join('')
-        : '&event_types=' + eventTypeQuery;
-    props.updateRequestUrl(query, moreInputs);
+    props.updateEventFilters(eventTypeQuery);
     clearCheckboxesFromForm();
     setEventTypeQuery([]);
-    return moreInputs;
+    console.log('done adding events function')
   };
   const keyPressed = (event) => {
     setQuery(query + event.key);
@@ -49,14 +46,13 @@ const Form = (props) => {
     }
   };
   const activeDateFilter = () => {
-    console.log('working')
-    setDateFilterActive(!dateFilterActive)
-    setIncludePast(!includePast)
-  }
+    console.log('working');
+    setDateFilterActive(!dateFilterActive);
+    setIncludePast(!includePast);
+  };
   const activateVirualFilter = () => {
-    setVirtualFilterActive(!virtualFilterActive)
-  
-  }
+    setVirtualFilterActive(!virtualFilterActive);
+  };
 
   return (
     <div className="form__container">
@@ -86,21 +82,21 @@ const Form = (props) => {
           <div style={{ margin: '-20px 0px 0px -21px' }}>
             <FilterButton
               type="button"
-              className={getButtonClassName(eventTypesActive)}
+              className={getFilterButtonClassName(eventTypesActive)}
               onClick={() => setEventTypesActive(!eventTypesActive)}
             >
               Add Event Filters
             </FilterButton>
             <FilterButton
               type="button"
-              className={getButtonClassName(dateFilterActive)}
+              className={getFilterButtonClassName(dateFilterActive)}
               onClick={() => activeDateFilter()}
             >
               Add Past Events
             </FilterButton>
             <FilterButton
               type="button"
-              className={getButtonClassName(virtualFilterActive)}
+              className={getFilterButtonClassName(virtualFilterActive)}
               onClick={() => activateVirualFilter()}
             >
               Virtual Events

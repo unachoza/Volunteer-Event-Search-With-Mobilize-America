@@ -15,10 +15,21 @@ const AddEventFilter = ({ handleEventFilters, doneAddingEvents }) => {
         </div>
       ))}
       <span style={{ display: 'flex', margin: '0px auto' }}>
-        {/* <button onClick={(event) => doneAddingEvents(event)}>submit</button> */}
+        <button onClick={(event) => doneAddingEvents(event)}>submit</button>
       </span>
     </form>
   );
 };
 
 export default AddEventFilter;
+
+
+//handle button finally, which button is it?
+//add descrption toggle back 
+//select marker useRef, 
+//url param for event type query
+//make names more intuitive
+//fix css classes
+//loading 
+//error message
+//no more events
